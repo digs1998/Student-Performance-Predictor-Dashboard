@@ -4,4 +4,7 @@ seaborn
 scikit-learn
 scipy
 opencv-python
--e .
+ipykernel
+catboost
+xgboost
+# -e .
