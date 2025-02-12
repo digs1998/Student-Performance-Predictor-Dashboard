@@ -31,14 +31,11 @@ def predict_datapoint():
             reading_score=request.form.get('number')
         )
         
-        pred_df = data.get_data_as_df()
-        print(pred_df)
-        
+        pred_df = data.get_data_as_df()   
         predict_pipeline = PredictPipeline()
         results = predict_pipeline.predict(pred_df)
         
-        return render_template('home.html', results=results[0])
-    
+        return render_template('home.html', results= str(round(results[0],2)))
     
     
 if __name__ == "__main__":
