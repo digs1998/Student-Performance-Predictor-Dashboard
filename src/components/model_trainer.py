@@ -52,9 +52,43 @@ class ModelTrainer:
                 "Catboost": CatBoostRegressor(verbose=False)
             }
             
+            params={
+                "Decision Trees": {
+                    'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+                    # 'splitter':['best','random'],
+                    # 'max_features':['sqrt','log2'],
+                },
+                "KNN":{
+                    'n_neighbors' : [2,4,6,8,10,12]
+                
+                },
+                "Random Forest":{
+                    # 'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+                 
+                    # 'max_features':['sqrt','log2',None],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+                "Linear Regression":{},
+                "XGBoost":{
+                    'learning_rate':[.1,.01,.05,.001],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+                "Adaboost":{
+                    'learning_rate':[.1,.01,0.5,.001],
+                    # 'loss':['linear','square','exponential'],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+                "Catboost":{
+                    'depth': [6,8,10],
+                    'learning_rate': [0.01, 0.05, 0.1],
+                    'iterations': [30, 50, 100]
+                }
+                
+            }
+            
             model_report = {}
             model_report = evaluate_models(xtrain=xtrain, ytrain=ytrain, 
-                                          xtest=xtest, ytest=ytest, models=model_dict)
+                                          xtest=xtest, ytest=ytest, models=model_dict, params = params)
             
             best_model_score = max(model_report.values())  # Find the highest score
             best_model_key = max(model_report, key=model_report.get)  # Find corresponding key
