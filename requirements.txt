@@ -7,4 +7,5 @@ opencv-python
 ipykernel
 catboost
 xgboost
+dill
 # -e .
