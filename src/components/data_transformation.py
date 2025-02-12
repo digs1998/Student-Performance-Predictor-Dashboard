@@ -16,7 +16,7 @@ from src.utils import save_object
 @dataclass
 class DataTransformationConfig:
     #saving pickle file
-    preprocessor_obj_path = os.path.join('artifacts', "preprocessor.pkl")
+    preprocessor_obj_path = os.path.join('src/components/artifacts', "preprocessor.pkl")
     
 class DataTransformation:
     def __init__(self):
